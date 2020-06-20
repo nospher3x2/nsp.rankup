@@ -1,0 +1,30 @@
+settings:
+  general:
+    actionbar: true
+    broadcast: true
+    title: true
+    delay: 5
+  points:
+    '1':
+      id: '1:0'
+      value: 3
+    '2':
+      id: '5:0'
+      value: 50
+  ranks:
+    Terra3:
+      name: Terra III
+      hierarchy: 0
+      prefix: '&c[Terra III]'
+      price: 1000
+      points: 500
+      commands:
+        - 'say {player} is beautiful.'
+    Terra2:
+      name: Terra II
+      display-name: '&c[Terra II]'
+      hierarchy: 1
+      price: 2000
+      points: 1000
+      commands:
+        - 'say {player} is amazing.'
