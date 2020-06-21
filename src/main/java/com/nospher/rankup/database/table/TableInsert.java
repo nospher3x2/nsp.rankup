@@ -17,19 +17,19 @@ public class TableInsert {
     private final Table table;
     private final String[] fields;
 
-    public TableInsertResult one(Object... values) throws SQLException {
+    public Integer one(Object... values) throws SQLException {
         try (val ps = connection.prepareStatement(sql(), Statement.RETURN_GENERATED_KEYS)) {
             for (int x = 0; x < values.length; x++) {
                 ps.setObject(x+1, values[x]);
             }
             ps.executeUpdate();
 
-            long id = -1;
+            int id = -1;
             try (val rs = ps.getGeneratedKeys()) {
                 if (rs.first())
-                    id = rs.getLong(1);
+                    id = rs.getInt(1);
             }
-            return new TableInsertResult(id);
+            return id;
         }
     }
 

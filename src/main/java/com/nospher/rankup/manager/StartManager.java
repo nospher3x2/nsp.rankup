@@ -9,8 +9,13 @@ import com.nospher.rankup.cache.config.RankupRankConfigCache;
 public class StartManager {
 
     public StartManager() {
+        new CacheManager();
+    }
+}
+
+class CacheManager {
+    public CacheManager() {
         RankupPointConfigCache.fetchAll();
         RankupRankConfigCache.fetchAll();
-
     }
 }

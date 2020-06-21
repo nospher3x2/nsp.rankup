@@ -1,6 +1,7 @@
 package com.nospher.rankup.user.data;
 
 import com.nospher.rankup.rank.data.Rank;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -13,6 +14,7 @@ import java.util.UUID;
  * @author oNospher
  **/
 @RequiredArgsConstructor
+@AllArgsConstructor
 @Getter
 public class RankupUser {
 

@@ -33,11 +33,12 @@ public class TableQuery extends QueryBuilder<TableQuery> {
 
         String sql = "SELECT "+fields+" FROM `"+table+"`"+query.sql;
         if (limit != null) sql+=" LIMIT "+limit;
-        if (Table.DEBUG) System.out.println("[DEBUG] "+sql);
 
         val ps = link.prepareStatement(sql);
         for (int x = 0; x < query.values.size(); x++)
             ps.setObject(x+1, query.values.get(x));
+
+        if (Table.DEBUG) System.out.println("[DEBUG] "+sql);
         return ps.executeQuery();
     }
 

@@ -1,5 +1,7 @@
 package com.nospher.rankup;
 
+import com.avaje.ebean.cache.ServerCacheManager;
+import com.nospher.rankup.manager.StartManager;
 import lombok.Getter;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -14,5 +16,6 @@ public class RankupPlugin extends JavaPlugin {
     @Override
     public void onEnable() {
         instance = this;
+        new StartManager();
     }
 }

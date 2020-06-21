@@ -7,8 +7,8 @@ public class TableColumn {
 
     public static final TableColumn
         ID = new TableColumn("INT NOT NULL AUTO_INCREMENT"),
-        UUID = new TableColumn("VARCHAR(255) NOT NULL"),
-        STRING = new TableColumn("VARCHAR(255)"),
+        UUID = new TableColumn("VARCHAR(%d) NOT NULL"),
+        STRING = new TableColumn("VARCHAR(%d)"),
         BYTE = new TableColumn("TINYINT"),
         BOOLEAN = BYTE.clone(),
         SHORT = new TableColumn("MEDIUMINT"),
@@ -23,8 +23,8 @@ public class TableColumn {
         UUID.setPrimaryKey(true);
     }
 
-
     @Getter
+    @Setter
     private String syntax;
     @Getter
     @Setter
@@ -41,6 +41,18 @@ public class TableColumn {
         this.syntax = clone.syntax;
         this.defaultValue = clone.defaultValue;
         this.primaryKey = clone.primaryKey;
+    }
+
+    public TableColumn value(Integer length) {
+        String syntax = this.syntax = String.format(
+                this.syntax,
+                length
+        );
+
+        TableColumn tableColumn = this.clone();
+        tableColumn.setSyntax(syntax);
+
+        return tableColumn;
     }
 
     @Override
