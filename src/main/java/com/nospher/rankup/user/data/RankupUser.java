@@ -27,6 +27,10 @@ public class RankupUser {
     @Setter
     private Double points;
 
+    public void addPoints(Double points) {
+        this.points += points;
+    }
+
     public Player getPlayer() {
         return Bukkit.getPlayer(this.uniqueId);
     }

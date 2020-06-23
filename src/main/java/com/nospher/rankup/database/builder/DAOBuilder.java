@@ -6,6 +6,7 @@ import com.nospher.rankup.database.manager.MySQLManager;
 import com.nospher.rankup.database.table.Table;
 
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -28,13 +29,11 @@ public abstract class DAOBuilder<T> {
 
     public T insert(T element) throws SQLException { return null; }
 
-    public <K, V> void update(Parameters<K, V> keys, T element) throws SQLException { }
+    public <K, V> void update(List<Parameters<K, V>> keys, T element) throws SQLException {}
 
-    public <K, V> void delete(K key, V value) throws SQLException { }
+    public <K, V> void delete(K key, V value) throws SQLException {}
 
-    public <K, V> T fetchOne(K key, V value) {
-        return null;
-    }
+    public <K, V> T fetchOne(K key, V value) { return null; }
 
     public <K, V> Set<T> fetchAll(K key, V value) { return null; }
 

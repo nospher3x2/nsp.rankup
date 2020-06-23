@@ -30,12 +30,12 @@ public class TableUpdate extends QueryBuilder<TableUpdate> {
         String join = String.join(", ", fields);
 
         String sql = "UPDATE `"+table+"` SET "+join+query.sql;
-        if (Table.DEBUG) System.out.println("[DEBUG] "+sql);
 
         try (val ps = link.prepareStatement(sql)) {
             int column = 1;
             for (Object o : values) ps.setObject(column++, o);
             for (Object o : query.values) ps.setObject(column++, o);
+            if (Table.DEBUG) System.out.println("[DEBUG] "+sql);
             return ps.executeUpdate();
         }
     }

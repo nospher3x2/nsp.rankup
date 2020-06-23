@@ -47,6 +47,7 @@ public class Table {
     }
 
     public TableUpdate update(String... fields) { return update(defaultConnection, fields); }
+
     public TableUpdate update(Connection connection, String... fields) {
         return new TableUpdate(connection, this, fields);
     }
