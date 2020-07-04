@@ -13,9 +13,13 @@ public class RankupPlugin extends JavaPlugin {
     @Getter
     private static RankupPlugin instance;
 
+    private Boolean ACTION_BAR, BROADCAST, TITLE;
+
     @Override
     public void onEnable() {
         instance = this;
         new StartManager();
     }
+
+
 }

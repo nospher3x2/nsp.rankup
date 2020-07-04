@@ -1,8 +1,9 @@
-package com.nospher.rankup.cache.config;
+package com.nospher.rankup.point.storage.loader;
 
-import com.github.benmanes.caffeine.cache.Cache;
-import com.github.benmanes.caffeine.cache.Caffeine;
 import com.nospher.rankup.RankupPlugin;
+import com.nospher.rankup.RankupProvider;
+import com.nospher.rankup.point.entity.Point;
+import com.nospher.rankup.point.storage.cache.PointCache;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.material.MaterialData;
@@ -10,17 +11,9 @@ import org.bukkit.material.MaterialData;
 /**
  * @author oNospher
  **/
-public class RankupPointConfigCache {
+public class PointLoader {
 
-    private static final Cache<MaterialData, Double> CACHE_BY_ITEM_STACK = Caffeine
-            .newBuilder()
-            .build();
-
-    public static Double get(MaterialData materialData) {
-        return RankupPointConfigCache.CACHE_BY_ITEM_STACK.getIfPresent(materialData);
-    }
-
-    public static void fetchAll() {
+    public PointLoader() {
         FileConfiguration configuration = RankupPlugin.getInstance().getConfig();
 
         configuration.getConfigurationSection("settings.points").getKeys(false).forEach(key -> {
@@ -30,7 +23,7 @@ public class RankupPointConfigCache {
 
             String preBlock = section.getString("id");
             Double value = section.getDouble("value");
-            int id,data;
+            int id, data;
             if (preBlock.contains(":")) {
                 String[] split = preBlock.split(":");
 
@@ -42,9 +35,12 @@ public class RankupPointConfigCache {
             }
 
             MaterialData materialData = new MaterialData(id, (byte) data);
-            RankupPointConfigCache.CACHE_BY_ITEM_STACK.put(materialData, value);
+            Point point = new Point(
+                    materialData,
+                    value
+            );
+
+            RankupProvider.Cache.POINT_CACHE.insert(point);
         });
-
     }
-
 }

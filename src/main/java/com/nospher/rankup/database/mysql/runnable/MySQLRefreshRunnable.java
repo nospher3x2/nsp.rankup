@@ -1,6 +1,6 @@
-package com.nospher.rankup.database.runnable;
+package com.nospher.rankup.database.mysql.runnable;
 
-import com.nospher.rankup.database.manager.MySQLManager;
+import com.nospher.rankup.database.mysql.manager.MySQLManager;
 
 /**
  * @author oNospher

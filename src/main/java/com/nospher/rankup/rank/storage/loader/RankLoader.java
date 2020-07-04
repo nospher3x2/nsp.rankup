@@ -1,9 +1,8 @@
-package com.nospher.rankup.cache.config;
+package com.nospher.rankup.rank.storage.loader;
 
-import com.github.benmanes.caffeine.cache.Cache;
-import com.github.benmanes.caffeine.cache.Caffeine;
 import com.nospher.rankup.RankupPlugin;
-import com.nospher.rankup.rank.data.Rank;
+import com.nospher.rankup.RankupProvider;
+import com.nospher.rankup.rank.entity.Rank;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 
@@ -12,17 +11,8 @@ import java.util.List;
 /**
  * @author oNospher
  **/
-public class RankupRankConfigCache {
-
-    private static final Cache<Integer, Rank> CACHE_BY_HIERARCHY = Caffeine
-            .newBuilder()
-            .build();
-
-    public static Rank getByHierarchy(Integer hierarchy) {
-        return RankupRankConfigCache.CACHE_BY_HIERARCHY.getIfPresent(hierarchy);
-    }
-
-    public static void fetchAll() {
+public class RankLoader {
+    public RankLoader() {
         FileConfiguration configuration = RankupPlugin.getInstance().getConfig();
         configuration.getConfigurationSection("settings.ranks").getKeys(false).forEach(key -> {
             ConfigurationSection section = configuration.getConfigurationSection("settings.ranks." + key);
@@ -43,7 +33,7 @@ public class RankupRankConfigCache {
                     commands
             );
 
-            RankupRankConfigCache.CACHE_BY_HIERARCHY.put(hierarchy, rank);
+            RankupProvider.Cache.RANK_CACHE.insert(hierarchy, rank);
         });
     }
 }

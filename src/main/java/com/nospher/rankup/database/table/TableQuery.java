@@ -52,10 +52,10 @@ public class TableQuery extends QueryBuilder<TableQuery> {
     }
 
     @SneakyThrows
-    public long count() {
+    public Integer count() {
         this.fields = "COUNT(*) as total";
         ResultSet rs = exec();
-        long value = rs.first() ? rs.getLong("total") : 0;
+        Integer value = rs.first() ? rs.getInt("total") : 0;
         close(rs);
         return value;
     }

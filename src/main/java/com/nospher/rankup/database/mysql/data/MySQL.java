@@ -1,4 +1,4 @@
-package com.nospher.rankup.database;
+package com.nospher.rankup.database.mysql.data;
 
 import lombok.RequiredArgsConstructor;
 

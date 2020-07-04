@@ -1,7 +1,7 @@
 package com.nospher.rankup.manager;
 
-import com.nospher.rankup.cache.config.RankupPointConfigCache;
-import com.nospher.rankup.cache.config.RankupRankConfigCache;
+import com.nospher.rankup.point.storage.loader.PointLoader;
+import com.nospher.rankup.rank.storage.loader.RankLoader;
 
 /**
  * @author oNospher
@@ -9,13 +9,7 @@ import com.nospher.rankup.cache.config.RankupRankConfigCache;
 public class StartManager {
 
     public StartManager() {
-        new CacheManager();
-    }
-}
-
-class CacheManager {
-    public CacheManager() {
-        RankupPointConfigCache.fetchAll();
-        RankupRankConfigCache.fetchAll();
+        new PointLoader();
+        new RankLoader();
     }
 }

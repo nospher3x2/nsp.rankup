@@ -1,4 +1,4 @@
-package com.nospher.rankup.rank.data;
+package com.nospher.rankup.rank.entity;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -19,7 +19,4 @@ public class Rank {
     private final Double points;
     private final List<String> commands;
 
-    public Boolean isFirst() {
-        return this.hierarchy == 0;
-    }
 }

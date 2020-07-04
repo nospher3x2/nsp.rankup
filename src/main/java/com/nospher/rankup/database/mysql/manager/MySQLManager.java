@@ -1,8 +1,8 @@
-package com.nospher.rankup.database.manager;
+package com.nospher.rankup.database.mysql.manager;
 
 import com.google.common.collect.Maps;
 import com.nospher.rankup.RankupPlugin;
-import com.nospher.rankup.database.MySQL;
+import com.nospher.rankup.database.mysql.data.MySQL;
 import org.bukkit.configuration.ConfigurationSection;
 
 import java.sql.SQLException;
